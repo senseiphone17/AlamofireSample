@@ -10,7 +10,8 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource {
+
     let table = UITableView()
     var articles: [[String: String?]] = []
 
@@ -19,6 +20,7 @@ class ViewController: UIViewController {
 
         table.frame = view.frame
         view.addSubview(table)
+        table.dataSource = self
 
         getArticles()
     }
@@ -41,8 +43,20 @@ class ViewController: UIViewController {
                     ] // 1つの記事を表す辞書型を作る
                     self.articles.append(article)
                 }
-                print(self.articles)
+                self.table.reloadData()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return articles.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell") // Subtitleのあるセルを生成
+        let article = articles[indexPath.row] // 行数番目の記事を取得
+        cell.textLabel?.text = article["title"]! // 記事のタイトルをtextLabelにセット
+        cell.detailTextLabel?.text = article["userId"]!
+        return cell // cellを返す
     }
 }
 
