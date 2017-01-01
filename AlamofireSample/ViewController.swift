@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class ViewController: UIViewController {
     let table = UITableView()
@@ -28,7 +29,13 @@ class ViewController: UIViewController {
     func getArticles() {
         Alamofire.request("https://qiita.com/api/v2/items")
             .responseJSON { response in
-                print(response.result.value as Any)
+                guard let object = response.result.value else { return }
+                
+                let json = JSON(object)
+                
+                json.forEach { (_, json) in
+                    print(json["title"])
+                }
         }
     }
 }
