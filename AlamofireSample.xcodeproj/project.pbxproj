@@ -14,6 +14,8 @@
 		FF6205781E18E07300B2CDDF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF6205761E18E07300B2CDDF /* LaunchScreen.storyboard */; };
 		FF6205831E18E07400B2CDDF /* AlamofireSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6205821E18E07400B2CDDF /* AlamofireSampleTests.swift */; };
 		FF62058E1E18E07400B2CDDF /* AlamofireSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF62058D1E18E07400B2CDDF /* AlamofireSampleUITests.swift */; };
+		FF62059E1E18E2EF00B2CDDF /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF62059C1E18E2EE00B2CDDF /* Alamofire.framework */; };
+		FF62059F1E18E2EF00B2CDDF /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF62059D1E18E2EE00B2CDDF /* SwiftyJSON.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		FF6205891E18E07400B2CDDF /* AlamofireSampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlamofireSampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF62058D1E18E07400B2CDDF /* AlamofireSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireSampleUITests.swift; sourceTree = "<group>"; };
 		FF62058F1E18E07400B2CDDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF62059C1E18E2EE00B2CDDF /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		FF62059D1E18E2EE00B2CDDF /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF62059E1E18E2EF00B2CDDF /* Alamofire.framework in Frameworks */,
+				FF62059F1E18E2EF00B2CDDF /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +87,7 @@
 				FF6205811E18E07400B2CDDF /* AlamofireSampleTests */,
 				FF62058C1E18E07400B2CDDF /* AlamofireSampleUITests */,
 				FF62056B1E18E07300B2CDDF /* Products */,
+				FF62059B1E18E2EC00B2CDDF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,6 +132,15 @@
 			path = AlamofireSampleUITests;
 			sourceTree = "<group>";
 		};
+		FF62059B1E18E2EC00B2CDDF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FF62059C1E18E2EE00B2CDDF /* Alamofire.framework */,
+				FF62059D1E18E2EE00B2CDDF /* SwiftyJSON.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,6 +151,7 @@
 				FF6205661E18E07300B2CDDF /* Sources */,
 				FF6205671E18E07300B2CDDF /* Frameworks */,
 				FF6205681E18E07300B2CDDF /* Resources */,
+				FF6205A01E18E34800B2CDDF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -253,6 +270,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FF6205A01E18E34800B2CDDF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FF6205661E18E07300B2CDDF /* Sources */ = {
@@ -412,6 +447,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = AlamofireSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sensei.AlamofireSample;
@@ -424,6 +463,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = AlamofireSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sensei.AlamofireSample;
